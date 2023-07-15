@@ -1,8 +1,6 @@
 def solution(a):
     if a==1:
         return 1
-    elif a>1 and a<8:
-        return 2
     else:
         n = 0
         Sn = 3*n*(n+1)+1
