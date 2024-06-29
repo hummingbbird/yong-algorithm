@@ -1,5 +1,4 @@
-import sys
-N = sys.stdin.readline().strip()
+N = input()
 result = 0
 if len(N) == 1:
     result = int(N)
