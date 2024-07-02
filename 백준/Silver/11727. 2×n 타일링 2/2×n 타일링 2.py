@@ -1,12 +1,10 @@
-n = int(input())
-dp = [0] * 1001
-
-# 초기값 지정
-dp[0] = 1
-dp[1] = 1
-
-# 점화식에 따른 경우의 수 계산
-for i in range(2, n+1):
-    dp[i] = dp[i-1] + 2 * dp[i-2]
-
-print(dp[n]%10007)
+a = int(input())
+if a == 1:
+  print(1)
+elif a == 2:
+  print(3)
+else:
+  result = [1,3]
+  for i in range(2, a):
+    result.append(result[i-2]*2+result[i-1])
+  print(result[-1]%10007)
