@@ -1,13 +1,11 @@
-a = int(input())
-lst = list(map(int, input().split()))
-dp = [1 for _ in range(a)]
+N = int(input())
+A = list(map(int, input().split(" ")))
+answer=0
+dp = [1] * N
 
-for i in range(a): #i = 0~a-1까지 반복
- for j in range(0, i):
-  # 대상이 되는 숫자(i)가 전 숫자(j)보다 작으면 dp값 비교
-  if lst[i] > lst[j]:
-   dp[i] = max(dp[i], dp[j]+1)
-
-
+for i in range(1, N):
+  for j in range(i):
+    if A[j]<A[i]:
+      dp[i] = max(dp[j]+1, dp[i])
 
 print(max(dp))
