@@ -1,7 +1,6 @@
 # https://www.acmicpc.net/problem/3665
 import sys
 import heapq
-from collections import deque
 input = sys.stdin.readline
 
 T = int(input())
@@ -56,10 +55,16 @@ def final_rank():
       if d[v] == 0:
         heapq.heappush(S, v)
   
-  if any(d):
-    return "IMPOSSIBLE"
+  hastrue = False
+  for dv in d:
+      if dv:
+          hastrue = True
+          break
+
+  if hastrue:
+      return "IMPOSSIBLE"
   else:
-    return " ".join(map(str, result))
+      return " ".join(map(str, result))
   
 
 for _ in range(T):
