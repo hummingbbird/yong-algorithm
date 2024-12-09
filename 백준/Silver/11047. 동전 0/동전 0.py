@@ -14,11 +14,7 @@ for coin in coins:
   if k-coin < 0:
     continue
   else:
-    # 1000
-    while k-coin >= 0:
-      k -= coin
-      cnt+=1
-      if k == 0:
-        break
+    cnt += k//coin
+    k -= (k//coin)*coin
 
 print(cnt)
