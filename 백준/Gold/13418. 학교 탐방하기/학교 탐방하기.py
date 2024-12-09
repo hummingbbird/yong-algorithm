@@ -28,27 +28,42 @@ for _ in range(m+1):
     continue
   paths.append(tmp)
 
-# 1. 최악의 경로: 0을 많이 지나야함
-parent = [int(i) for i in range(n+1)]
-paths.sort(key=lambda x:x[2])
-# print(paths)
-tired=tired_default
-for a, b, w in paths:
-  if find_set(a) != find_set(b):
-    union_set(a, b)
-    if w == 0:
-      tired+=1
-tired_worst = pow(tired, 2)
-# 2. 최고의 경로: 1을 많이 지나야함
-parent = [int(i) for i in range(n+1)]
-paths.sort(key=lambda x:x[2], reverse=True)
+# # 1. 최악의 경로: 0을 많이 지나야함
+# parent = [int(i) for i in range(n+1)]
+# paths.sort(key=lambda x:x[2])
+# # print(paths)
+# tired=tired_default
+# for a, b, w in paths:
+#   if find_set(a) != find_set(b):
+#     union_set(a, b)
+#     if w == 0:
+#       tired+=1
+# tired_worst = pow(tired, 2)
+# # 2. 최고의 경로: 1을 많이 지나야함
+# parent = [int(i) for i in range(n+1)]
+# paths.sort(key=lambda x:x[2], reverse=True)
 
-tired=tired_default
-for a, b, w in paths:
-  if find_set(a) != find_set(b):
-    union_set(a, b)
-    if w == 0:
-      tired+=1
-tired_best = pow(tired, 2)
+# tired=tired_default
+# for a, b, w in paths:
+#   if find_set(a) != find_set(b):
+#     union_set(a, b)
+#     if w == 0:
+#       tired+=1
+# tired_best = pow(tired, 2)
 
-print(tired_worst-tired_best)
+# print(tired_worst-tired_best)
+
+def calc_path(reverse):
+  global parent
+  parent = [int(i) for i in range(n+1)]
+  paths.sort(key=lambda x:x[2], reverse=reverse)
+
+  tired=tired_default
+  for a, b, w in paths:
+    if find_set(a) != find_set(b):
+      union_set(a, b)
+      if w == 0:
+        tired+=1
+  return tired**2
+
+print(calc_path(False)-calc_path(True))
