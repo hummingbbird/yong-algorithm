@@ -1,13 +1,11 @@
 function solution(binomial) {
-    var bino = binomial.split(" ");
-    var num1 = Number(bino[0]);
-    var num2 = Number(bino[2]);
-    switch (bino[1]) {
+    const [a, op, b] = binomial.split(" "); // 구조 분해 할당
+    switch (op) {
         case "+":
-            return num1+num2;
+            return +a + +b; // 문자열 덧셈이 되지 않기 위한 처리 필요
         case "-":
-            return num1-num2;
+            return a-b;
         case "*":
-            return num1*num2;
+            return a*b;
     }
 }
