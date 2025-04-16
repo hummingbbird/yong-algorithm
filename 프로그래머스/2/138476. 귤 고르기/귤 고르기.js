@@ -9,14 +9,8 @@ function solution(k, tangerine) {
     var answer = 0; // 종류 개수
     
     for (let i=0;i<tanCounts.length;i++) {
-        if (gyul+tanCounts[i] === k) {
-            gyul += tanCounts[i];
-            answer += 1;
-        }
-        else {
-            gyul += tanCounts[i];
-            answer += 1;
-        }
+        gyul += tanCounts[i];
+        answer += 1;
         if (gyul >= k) break;
     }
     return answer;
