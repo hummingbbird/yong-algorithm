@@ -22,5 +22,6 @@ const EuclideanGCD = (a, b) => a%b === 0? b: EuclideanGCD(b, a%b);
 const EuclideanLCM = (a, b) => (a*b)/EuclideanGCD(a, b);
 
 function solution(n, m) {
-    return [EuclideanGCD(n, m), EuclideanLCM(n, m)];
+    return [GCD(n, m), LCM(n, m)];
+    // return [EuclideanGCD(n, m), EuclideanLCM(n, m)];
 }
