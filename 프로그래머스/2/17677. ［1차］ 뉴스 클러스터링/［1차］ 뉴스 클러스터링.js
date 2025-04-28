@@ -23,8 +23,10 @@ function solution(str1, str2) {
             
         }
     });
+    
     var union = multiset1.concat(multiset2); // 합집합
-    console.log(union, inter);
-    if(union.length===0 && inter.length===0) return 65536;
-    return Math.floor((inter.length/union.length)*65536);
+    
+    return (union.length===0 && inter.length===0)?
+    65536
+    :Math.floor((inter.length/union.length)*65536);
 }
