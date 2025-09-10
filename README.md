@@ -6,10 +6,12 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 ## Array
 |  |
 | ------- |
+| [0001-two-sum](https://github.com/hummingbbird/yong-algorithm/tree/master/0001-two-sum) |
 | [0217-contains-duplicate](https://github.com/hummingbbird/yong-algorithm/tree/master/0217-contains-duplicate) |
 ## Hash Table
 |  |
 | ------- |
+| [0001-two-sum](https://github.com/hummingbbird/yong-algorithm/tree/master/0001-two-sum) |
 | [0217-contains-duplicate](https://github.com/hummingbbird/yong-algorithm/tree/master/0217-contains-duplicate) |
 | [0242-valid-anagram](https://github.com/hummingbbird/yong-algorithm/tree/master/0242-valid-anagram) |
 ## Sorting
