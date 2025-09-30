@@ -9,6 +9,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 | [0001-two-sum](https://github.com/hummingbbird/yong-algorithm/tree/master/0001-two-sum) |
 | [0049-group-anagrams](https://github.com/hummingbbird/yong-algorithm/tree/master/0049-group-anagrams) |
 | [0217-contains-duplicate](https://github.com/hummingbbird/yong-algorithm/tree/master/0217-contains-duplicate) |
+| [0238-product-of-array-except-self](https://github.com/hummingbbird/yong-algorithm/tree/master/0238-product-of-array-except-self) |
 | [0347-top-k-frequent-elements](https://github.com/hummingbbird/yong-algorithm/tree/master/0347-top-k-frequent-elements) |
 ## Hash Table
 |  |
@@ -50,4 +51,8 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 |  |
 | ------- |
 | [0347-top-k-frequent-elements](https://github.com/hummingbbird/yong-algorithm/tree/master/0347-top-k-frequent-elements) |
+## Prefix Sum
+|  |
+| ------- |
+| [0238-product-of-array-except-self](https://github.com/hummingbbird/yong-algorithm/tree/master/0238-product-of-array-except-self) |
 <!---LeetCode Topics End-->
