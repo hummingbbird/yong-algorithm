@@ -28,6 +28,7 @@ dfs(V)
 # 2. bfs 함수 구현
 bfs_v = [0] * (N+1)
 tovisit = queue.Queue()
+
 def bfs(s):
     tovisit.put(s)
 
