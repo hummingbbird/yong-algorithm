@@ -1,56 +1,37 @@
-def strToArr(target):
-    return [int(target[:2]), int(target[3:])]
+def minToSec(time):
+    return (int(time[:2]) * 60) + int(time[3:])
 
-def arrToInt(target):
-    return (target[0] * 100) + target[1]
+def secToMin(time):
+    mm = str(time//60)
+    mm = ("0" + str(time//60)) if time//60 < 10 else str(time//60)
+    ss = ("0" + str(time%60)) if time%60 < 10 else str(time%60)
+    return mm + ":" + ss
 
-def arrToStr(target):
-    answer = "0" if target[0] < 10 else ""
-    answer += str(target[0])
-    
-    answer += ":"
-    
-    ss = target[1]
-    answer += "0" if target[1] < 10 else ""
-    answer += str(target[1])
-    
-    return answer
-
-def processCommand(cmd, ctime, video_len, op_start, op_end):
-        # ctime = [mm, ss]의 형태
-        
-        # 오프닝 구간인 경우 오프닝이 끝나는 위치로 이동
-        if arrToInt(strToArr(op_start)) <= arrToInt(ctime) <= arrToInt(strToArr(op_end)):
-            ctime = strToArr(op_end)
-            
+def processCommand(cmd, pos, video_len, op_start, op_end):
         if cmd == "prev":
-            if ctime[0] == 0 and ctime[1] < 10:
-                ctime = [0, 0]
-            elif ctime[1] < 10:
-                ctime[0] -= 1
-                ctime[1] += 50
+            if pos-10 < 10:
+                pos = 0
             else:
-                ctime[1] -= 10
+                pos -= 10
+                
         elif cmd == "next":
-            if ctime[1] >= 50:
-                ctime[0] += 1
-                ctime[1] -= 50
+            if pos+10 > video_len:
+                pos = video_len
             else:
-                ctime[1] += 10
-            
-        # video_len보다 크면 video_len으로 변경
-        if arrToInt(ctime) > arrToInt(strToArr(video_len)) :
-            ctime = strToArr(video_len)
+                pos += 10
         
-        # 오프닝 구간인 경우 오프닝이 끝나는 위치로 이동
-        if arrToInt(strToArr(op_start)) <= arrToInt(ctime) <= arrToInt(strToArr(op_end)):
-            ctime = strToArr(op_end)
-            
-        return ctime
+        if op_start <= pos <= op_end:
+            pos = op_end
+        
+        return pos
     
 def solution(video_len, pos, op_start, op_end, commands):
-    time = strToArr(pos)
+    video_len, pos, op_start, op_end = minToSec(video_len), minToSec(pos), minToSec(op_start), minToSec(op_end)
     
+    if op_start <= pos <= op_end:
+            pos = op_end
+            
     for cmd in commands:
-        time = processCommand(cmd, time, video_len, op_start, op_end)
-    return arrToStr(time)
+        pos = processCommand(cmd, pos, video_len, op_start, op_end)
+        
+    return secToMin(pos)
