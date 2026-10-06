@@ -11,7 +11,6 @@ def solution(players, m, k):
             else:
                 newArr.append(i-1)
         extra = newArr
-        return
 
     for player in players:
         need, cur = player//m, len(extra)
