@@ -13,12 +13,10 @@ def solution(players, m, k):
         extra = newArr
         return
 
-    for i in range(len(players)):
-        need, cur = players[i]//m, len(extra)
+    for player in players:
+        need, cur = player//m, len(extra)
         if need > cur:
-            print(i, "번째에서", need-cur, "번 만큼 증식")
             cnt += (need - cur)
             extra += [k for _ in range(need-cur)]   
         timer()
-    # timer()
     return cnt
