@@ -68,9 +68,6 @@ def crain(con, req):
     return con
                 
 def solution(storage, requests):
-    n, m = len(storage), len(storage[0])
-    answer = 0
-    
     # 1. 명령어 실행
     for req in requests:
         # case1: 지게차
@@ -79,8 +76,11 @@ def solution(storage, requests):
         # case2: 크레인
         else: 
             storage = crain(storage, req[0])
-    
+
     # 2. 남은 컨테이너 수 return
+    n, m = len(storage), len(storage[0])
+    answer = 0
+
     for i in range(n):
         for j in range(m):
             if storage[i][j] != "0":
