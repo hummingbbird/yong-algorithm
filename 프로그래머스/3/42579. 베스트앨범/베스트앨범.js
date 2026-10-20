@@ -1,31 +1,21 @@
 function solution(genres, plays) {
-    const lst = {};
-    const rank = {};
-    for(let i=0;i<genres.length;i++) {
-        if (lst[genres[i]]) {
-            lst[genres[i]].push([i, plays[i]])
-            rank[genres[i]] += plays[i]
-        }
+    const play = {};
+    const list = [];
+    for(let i=0;i<genres.length;i++){
+        // 1. 장르별 play수 누적
+        if (play[genres[i]]) {
+            play[genres[i]] += plays[i];
+        } 
         else {
-            lst[genres[i]] = [[i, plays[i]]]
-            rank[genres[i]] = plays[i]
+            play[genres[i]] = plays[i];
         }
+        list.push([i, genres[i], plays[i]])
     }
-    const tmp = Object.fromEntries(Object.entries(lst).map((item) => {
-        return [item[0], item[1].sort((a, b) => { return b[1]-a[1]}).slice(0,2)]
-    }));
+    // 2. 장르 정렬 먼저
     
-    const ranking = Object.entries(rank)
-        .sort((a,b) =>  b[1]-a[1])
-        .map((item) => {return item[0]});
-    
-    const answer = [];
-    
-    ranking.forEach((item) => {
-        tmp[item].forEach((ele) => {
-            answer.push(ele[0])
-        })
+    return list.sort((a, b) => {
+        return b[2]-a[2];
     })
     
-    return answer;
+    // 3. 그러면 이 (고유번호, 장르, 재생회수) 형태의 배열을 장르 순, 재생회수, 고유번호 순으로 정렬하면 안 됨?
 }
