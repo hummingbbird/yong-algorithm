@@ -1,7 +1,12 @@
 function solution(clothes) {
-    var answer = 1;
-    var category = {};
-    clothes.forEach(it => category[it[1]] = (category[it[1]]||0)+1);
-    Object.values(category).forEach(it => answer *= (it+1));
-    return answer-1;
+    const dic = {};
+    clothes.forEach((item) => {
+        if (dic[item[1]]) {
+            dic[item[1]] += 1;
+        }
+        else {
+            dic[item[1]] = 2;
+        }
+    })
+    return Object.values(dic).reduce((prev,item) => prev*item)-1;
 }
