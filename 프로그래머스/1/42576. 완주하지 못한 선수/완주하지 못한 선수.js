@@ -1,11 +1,19 @@
 function solution(participant, completion) {
     let answer = '';
-    participant.sort()
-    completion.sort()
-    for(let i=0;i<completion.length;i++) {
-        if (participant[i] !== completion[i]){
-            return participant[i]
+    // 1. 해시로 정리
+    const dic = {};
+    participant.forEach((item) => {
+        if (dic[item]) {
+            dic[item] += 1
         }
-    }
-    return participant[participant.length-1]
+        else {
+            dic[item] = 1
+        }
+    })
+    
+    // 2. completion 탐색
+    completion.forEach((item) => {
+        dic[item] -= 1
+    })
+    return Object.keys(dic).filter((item) => dic[item] === 1).join('');
 }
