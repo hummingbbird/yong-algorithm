@@ -1,29 +1,25 @@
 function solution(priorities, location) {
-    var answer = 0;
-    var prcs = [];
-    // 1. [index, priority] 로 구성된 배열 prcs 생성
-    priorities.forEach((it, i)=>{
-        prcs.push([i, it])
-    });
-    while (prcs.length >= 0) {
-        const tmp = prcs[0];
-        prcs = prcs.slice(1, prcs.length);
-        if (tmp[1] !== Math.max(...priorities)) {
-            prcs.push(tmp);
+    // location은 인덱스로 접근, 정답은 일반 숫자로 접근(1번째 2번째 ..)
+    // 지금 pop된 애의 [0]이 location이랑 같으면 order return~
+    let order = 1;
+    const queue = [];
+    
+    for(let i=0;i<priorities.length;i++) {
+        queue.push([i, priorities[i]]);
+    }
+    
+    while (true) {
+        const now = queue.shift();
+        if (Math.max(...queue.map((item) => item[1])) <= now[1]){
+            if (now[0] === location){
+                return order;
+            }
+            else {
+                order++;
+            };
         }
         else {
-            answer++;
-            if (tmp[0] === location) {
-                return answer;
-            }; 
-            for(let i=0; i< priorities.length; i++) {
-                if (priorities[i] === Math.max(...priorities)) {
-                    priorities.splice(i, 1);
-                    break;
-                }
-            };
-        };
-    };
-    
-    return answer;
+            queue.push(now);
+        }
+    }
 }
