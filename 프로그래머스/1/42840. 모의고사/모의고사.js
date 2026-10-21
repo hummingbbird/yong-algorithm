@@ -1,14 +1,14 @@
 function solution(answers) {
-    var answer = [0,0,0];
-    const first = "12345";
-    const second = "21232425";
-    const third = "3311224455";
-    answers.forEach((it, i) => {
-        if (it.toString() === first[i%5]) answer[0]++;
-        if (it.toString() === second[i%8]) answer[1]++;
-        if (it.toString() === third[i%10]) answer[2]++;
-    });
-    return answer.map((it, i) => {
-        if (it === Math.max(...answer)) return i+1;
-    }).filter(it => it);
+    var score = [0,0,0];
+    const p1 = [1,2,3,4,5];
+    const p2 = [2,1,2,3,2,4,2,5];
+    const p3 = [3,3,1,1,2,2,4,4,5,5];
+    for (let i=0;i<answers.length;i++) {
+        if (p1[i%5] === answers[i]) {score[0]++;}
+        if (p2[i%8] === answers[i]) {score[1]++;}
+        if (p3[i%10] === answers[i]) {score[2]++;}
+    }
+    const ans = [];
+    score.forEach((item, idx) => {if (item === Math.max(...score)) ans.push(idx+1)});
+    return ans;
 }
