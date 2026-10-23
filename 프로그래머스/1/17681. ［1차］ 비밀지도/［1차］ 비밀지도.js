@@ -1,18 +1,33 @@
-const getBinary = (n, tgt) => {
-    const changed = tgt.toString(2);
-    return ("0".repeat(n-changed.length)+changed);
+const changeToBin = (nums) => {
+    const arr = [];
+    nums.forEach((item) => {
+        const tmp = item.toString(2);
+        const tmp_arr = Array(nums.length - tmp.length).fill("0").join("")+tmp;
+        arr.push([...tmp_arr]);
+    })
+    return arr;
 }
+
+const decrypt = (arr1, arr2) => {
+    const N = arr1.length;
+    const ans = [];
+    for (let i=0;i<N;i++) {
+        const tmp = [];
+        for (let j=0;j<N;j++){
+            if (arr1[i][j] === "1" || arr2[i][j] === "1") {
+                tmp.push("#");
+            }
+            else {
+                tmp.push(" ");
+            }
+        }
+        ans.push(tmp.join(""));
+    }
+    return ans;
+};
 
 function solution(n, arr1, arr2) {
     var answer = [];
-    // 1. arr1, arr2 2진수 변환
-    arr1 = arr1.map(it => getBinary(n, it));
-    arr2 = arr2.map(it => getBinary(n, it));
-    
-    // 2. 합집합 구하기
-    for(let i=0;i<n;i++) {
-        const he = new Array(n).fill(0).map((_, j)=> (arr1[i][j] === "1" || arr2[i][j]=== "1")? "#":" ").join("");
-        answer.push(he);
-    }
-    return answer;
+    // arr1 지도 && arr2 지도 비트맵 연산 후 결과 #으로 변환하여 반환
+    return decrypt(changeToBin(arr1), changeToBin(arr2));
 }
