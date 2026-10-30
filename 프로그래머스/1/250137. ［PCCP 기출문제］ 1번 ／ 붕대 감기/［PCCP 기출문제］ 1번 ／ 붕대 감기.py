@@ -1,35 +1,28 @@
+from collections import deque
+
 def solution(bandage, health, attacks):
-    t, x, y = bandage
-    max_health = health
-    cnt, sequence = 1, 0
-    attack_idx = 0
+    # attack은 공격시간 기준 오름차순이라 걍..반복하면됨
+    [t, x, y] = bandage
+    attack_timing = deque(attacks)
+
+    time = attacks[-1][0]
+    yeonsok = 0
+    cur_health = health
     
-    while attack_idx < len(attacks):
-        n_attack = attacks[attack_idx]
-        
-        # 공격 시간인 경우
-        if n_attack[0] == cnt:
-            health -= n_attack[1]
-            sequence = 0
-            # 체력이 0보다 작아진 경우
-            if health <= 0:
+    for i in range(1, time+1):
+        # 몬스터 공격이 있다면 그걸 해야함.
+        if attack_timing[0][0] == i:
+            [timing, power] = attack_timing.popleft()
+            cur_health -= power
+            yeonsok = 0
+            if cur_health <= 0:
                 return -1
-            attack_idx += 1
-        
-        # 공격 시간이 아닌 경우
+        # 기본으로 해야할 일
         else:
-            health += x
-            sequence += 1
+            cur_health = min(health, cur_health+x)
+            yeonsok += 1
             
-            # 연속 성공일 경우
-            if sequence == t:
-                health += y
-                sequence = 0
-            
-            # 최대 체력 이상을 가지려고 할 때
-            if health > max_health:
-                health = max_health
-        
-        cnt += 1
-            
-    return health
+            if yeonsok == t:
+                cur_health = min(health, cur_health+y)
+                yeonsok = 0
+    return cur_health
